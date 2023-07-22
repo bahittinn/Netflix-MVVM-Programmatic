@@ -20,7 +20,7 @@ class HeroHeaderUIView: UIView {
     private let playButton: UIButton = {
         let button = UIButton()
         button.setTitle("Play", for: .normal)
-        button.layer.borderColor = UIColor.systemBackground.cgColor
+        button.layer.borderColor = UIColor.black.cgColor
         button.layer.borderWidth = 1
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -47,8 +47,9 @@ class HeroHeaderUIView: UIView {
     
     private func applyConstraints() {
         let playButtonConstraints = [
-            playButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
-            playButton.bottomAnchor.constraint(equalTo: bottomAnchor,   constant: -20)
+            playButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 90),
+            playButton.bottomAnchor.constraint(equalTo: bottomAnchor,   constant: -50),
+            playButton.widthAnchor.constraint(equalToConstant: 100)
         ]
         
         NSLayoutConstraint.activate(playButtonConstraints)
