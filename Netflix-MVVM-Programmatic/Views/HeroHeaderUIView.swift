@@ -17,10 +17,43 @@ class HeroHeaderUIView: UIView {
         return imageView
     }()
     
+    private let playButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Play", for: .normal)
+        button.layer.borderColor = UIColor.systemBackground.cgColor
+        button.layer.borderWidth = 1
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private func addGradient() {
+        let gradinetLayer = CAGradientLayer()
+        gradinetLayer.colors = [
+            UIColor.clear.cgColor,
+            UIColor.systemBackground.cgColor
+        ]
+        gradinetLayer.frame = bounds
+        layer.addSublayer(gradinetLayer)
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(heroImageView)
+        addSubview(playButton)
+        addGradient()
+        applyConstraints()
+        
     }
+    
+    private func applyConstraints() {
+        let playButtonConstraints = [
+            playButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            playButton.bottomAnchor.constraint(equalTo: bottomAnchor,   constant: -20)
+        ]
+        
+        NSLayoutConstraint.activate(playButtonConstraints)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError()
     }
