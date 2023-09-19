@@ -29,6 +29,8 @@ class HomeViewController: UIViewController {
         
         let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
         homeFeedTable.tableHeaderView = headerView
+        
+        getTrendingMovies()
     }
     
     
@@ -49,6 +51,13 @@ class HomeViewController: UIViewController {
         super.viewDidLayoutSubviews()
         homeFeedTable.frame = view.bounds
     }
+    
+    private func getTrendingMovies() {
+        APICaller.shared.getTrendingMovies { results in
+            
+        }
+    }
+    
 }
 
 extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
@@ -68,6 +77,14 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.font = .systemFont(ofSize: 18,weight: .semibold)
+        header.textLabel?.textColor = .white
+        header.textLabel?.frame = CGRect(x: header.bounds.origin.x, y: header.bounds.origin.x, width: 100, height: header.bounds.height)
+        
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
@@ -75,8 +92,6 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
-    
-    
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return sectionTitles[section]
@@ -87,9 +102,5 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
         let offset = scrollView.contentOffset.y + defaultOffset
         
         navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
-        
     }
-    
-    
-    
 }
