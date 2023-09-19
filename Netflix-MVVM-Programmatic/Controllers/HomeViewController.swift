@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Anasayfa"
+        title = ""
         view.addSubview(homeFeedTable)
         
         homeFeedTable.delegate = self
@@ -25,17 +25,15 @@ class HomeViewController: UIViewController {
         
         configureNavbar()
         
-        let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
+        let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
         homeFeedTable.tableHeaderView = headerView
     }
     
     
     private func configureNavbar() {
-        var image = UIImage(named: "logo")
+        var image = UIImage(named: "netflix_logo")
         image = image?.withRenderingMode(.alwaysOriginal)
-        navigationItem.leftBarButtonItems = [
-            UIBarButtonItem(image: image, style: .done, target: self, action: nil)
-        ]
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: nil)
         
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(image: UIImage(systemName: "person"), style: .done, target: self, action: nil),
