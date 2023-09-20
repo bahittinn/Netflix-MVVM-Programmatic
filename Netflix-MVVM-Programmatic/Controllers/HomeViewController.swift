@@ -62,7 +62,7 @@ class HomeViewController: UIViewController {
 //            }
 //        }
         
-        APICaller.shared.getUpcomingMovies { result in
+        APICaller.shared.getTopRated { result in
             print(result)
         }
     }
