@@ -9,7 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    let sectionTitles: [String] = ["Trending Movies", "Popular", "Trending Tv", "Upcoming Movies","Top Rated"]
+    let sectionTitles: [String] = ["Trendıng Movıes", "Trendıng Tv", "Popular", "Upcomıng Movıes","Top Rated"]
     
     private let homeFeedTable: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
@@ -54,7 +54,12 @@ class HomeViewController: UIViewController {
     
     private func getTrendingMovies() {
         APICaller.shared.getTrendingMovies { results in
-            
+            switch results {
+            case .success(let movies):
+                print(movies)
+            case.failure(let error):
+                print("DEBUG : \(error)")
+            }
         }
     }
     
@@ -82,7 +87,7 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
         header.textLabel?.font = .systemFont(ofSize: 18,weight: .semibold)
         header.textLabel?.textColor = .white
         header.textLabel?.frame = CGRect(x: header.bounds.origin.x, y: header.bounds.origin.x, width: 100, height: header.bounds.height)
-        
+        header.textLabel?.text = header.textLabel?.text?.capitalizeFirstLetter()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

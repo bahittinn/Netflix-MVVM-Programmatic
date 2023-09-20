@@ -17,7 +17,7 @@ import Foundation
 class APICaller {
     static let shared = APICaller()
     
-    func getTrendingMovies(completion: @escaping (String) -> Void) {
+    func getTrendingMovies(completion: @escaping (Result<[Movie], Error>) -> Void) {
         let headers = [
           "accept": "application/json",
           "Authorization": "Bearer \(Constants.API_KEY)"
@@ -34,10 +34,11 @@ class APICaller {
             guard let data = data, error == nil else { return }
             
             do {
-                let results = try? JSONDecoder().decode(TrendingMovieResponse.self, from: data)
+                let results = try JSONDecoder().decode(TrendingMovieResponse.self, from: data)
+                completion(.success(results.results))
     
             } catch {
-                print(error.localizedDescription)
+                completion(.failure(error))
             }
             
         })
