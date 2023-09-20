@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = ""
+        
         view.addSubview(homeFeedTable)
         
         homeFeedTable.delegate = self
@@ -62,7 +62,7 @@ class HomeViewController: UIViewController {
 //            }
 //        }
         
-        APICaller.shared.getTrendingTvs { result in
+        APICaller.shared.getUpcomingMovies { result in
             print(result)
         }
     }
