@@ -61,6 +61,7 @@ class CollectionViewTableViewCell: UITableViewCell {
         }
         
     }
+  
 }
 
 extension CollectionViewTableViewCell: UICollectionViewDelegate,UICollectionViewDataSource {
