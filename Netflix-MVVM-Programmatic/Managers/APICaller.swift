@@ -135,4 +135,24 @@ class APICaller {
         dataTask.resume()
     }
     
+    func getDiscoverMovies(completion: @escaping (Result<[Title], Error>) -> Void) {
+        let request =  makeRequest(with: "\(Constants.baseUrl)/3/movie/top_rated?language=en-US&page=1")
+
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+            guard let data = data, error == nil else { return }
+            
+            do {
+                let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data)
+                completion(.success(results.results))
+    
+            } catch {
+                completion(.failure(APIError.failedTogetData))
+            }
+            
+        })
+
+        dataTask.resume()
+    }
+    
 }
