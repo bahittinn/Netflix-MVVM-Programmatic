@@ -51,12 +51,21 @@ class HomeViewController: UIViewController {
             UIBarButtonItem(image: UIImage(systemName: "play.rectangle"), style: .done, target: self, action: nil)
         ]
         
-        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.tintColor = getTrait()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         homeFeedTable.frame = view.bounds
+    }
+    
+    private func getTrait() -> UIColor {
+        let currentTraitCollection = self.traitCollection
+        if currentTraitCollection.userInterfaceStyle == .dark {
+            return .white
+        } else {
+            return .black
+        }
     }
     
 }
@@ -132,7 +141,7 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
         header.textLabel?.font = .systemFont(ofSize: 18,weight: .semibold)
-        header.textLabel?.textColor = .white
+        header.textLabel?.textColor = getTrait()
         header.textLabel?.frame = CGRect(x: header.bounds.origin.x, y: header.bounds.origin.x, width: 100, height: header.bounds.height)
         header.textLabel?.text = header.textLabel?.text?.capitalizeFirstLetter()
     }
