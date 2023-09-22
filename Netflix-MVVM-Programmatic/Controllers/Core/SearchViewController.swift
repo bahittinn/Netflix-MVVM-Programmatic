@@ -9,6 +9,8 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
+    //MARK: - Variables
+    
     private var titles : [Title] = [Title]()
     
     private let discoverTable: UITableView = {
@@ -16,6 +18,15 @@ class SearchViewController: UIViewController {
         tableview.register(TitleTableViewCell.self, forCellReuseIdentifier: TitleTableViewCell.identifier)
         return tableview
     }()
+    
+    private let searchController: UISearchController = {
+        let controller = UISearchController(searchResultsController: SearchResultsViewController())
+        controller.searchBar.placeholder = "Search for a Movie or a Tv show"
+        controller.searchBar.searchBarStyle = .minimal  
+        return controller
+    }()
+    
+    //MARK: - LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +39,12 @@ class SearchViewController: UIViewController {
         discoverTable.delegate = self
         discoverTable.dataSource = self
         
+        navigationItem.searchController = searchController
+        
         fetchDiscoverMovies()
     }
+    
+    //MARK: - Functions
     
     private func fetchDiscoverMovies() {
         APICaller.shared.getDiscoverMovies { response in
@@ -51,6 +66,8 @@ class SearchViewController: UIViewController {
     }
     
 }
+
+//MARK: - TableView
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
