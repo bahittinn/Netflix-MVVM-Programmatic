@@ -22,7 +22,7 @@ class SearchViewController: UIViewController {
     private let searchController: UISearchController = {
         let controller = UISearchController(searchResultsController: SearchResultsViewController())
         controller.searchBar.placeholder = "Search for a Movie or a Tv show"
-        controller.searchBar.searchBarStyle = .minimal  
+        controller.searchBar.searchBarStyle = .minimal
         return controller
     }()
     
@@ -44,6 +44,8 @@ class SearchViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .white
         
         fetchDiscoverMovies()
+        
+        searchController.searchResultsUpdater = self
     }
     
     //MARK: - Functions
@@ -87,5 +89,31 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
+    }
+}
+
+extension SearchViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchbar = searchController.searchBar
+        
+        guard let query = searchbar.text,
+              !query.trimmingCharacters(in: .whitespaces).isEmpty,
+              query.trimmingCharacters(in: .whitespaces).count >= 3,
+              let resultController = searchController.searchResultsController as? SearchResultsViewController
+        else { return }
+        
+        APICaller.shared.search(with: query) { result in
+            switch result {
+            case .success(let title):
+                DispatchQueue.main.async {
+                    resultController.titles = title
+                    resultController.searchResultsCollectionView.reloadData()
+                }
+            case .failure(let error):
+                print("error is \(error.localizedDescription)")
+            }
+            
+        }
+        
     }
 }

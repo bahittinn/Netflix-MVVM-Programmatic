@@ -155,4 +155,25 @@ class APICaller {
         dataTask.resume()
     }
     
+    func search(with query: String,completion: @escaping (Result<[Title], Error>) -> Void) {
+        let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        let request =  makeRequest(with: "\(Constants.baseUrl)/3/search/movie?query=\(query!)")
+
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+            guard let data = data, error == nil else { return }
+            
+            do {
+                let results = try JSONDecoder().decode(TrendingTitleResponse.self, from: data)
+                completion(.success(results.results))
+    
+            } catch {
+                completion(.failure(APIError.failedTogetData))
+            }
+            
+        })
+
+        dataTask.resume()
+    }
+    
 }
