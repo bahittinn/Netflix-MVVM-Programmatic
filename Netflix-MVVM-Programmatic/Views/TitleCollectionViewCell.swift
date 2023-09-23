@@ -33,7 +33,6 @@ class TitleCollectionViewCell: UICollectionViewCell {
     }
     
     public func configure(with model: String) {
-        print("modal is \(model)")
         guard let url = URL(string: "https://image.tmdb.org/t/p/w500/\(model)") else { return }
         posterImageView.sd_setImage(with: url, completed: nil)
     }

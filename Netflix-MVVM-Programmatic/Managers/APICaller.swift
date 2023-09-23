@@ -17,6 +17,8 @@ struct Constants {
         "accept": "application/json",
         "Authorization": "Bearer \(Constants.API_KEY)"
       ]
+    
+    static let YoutubeAPI_Key = "AIzaSyDmSXwOuX0yy5fpebTxzz_g41wRMxD2vOc"
 }
 
 enum APIError: Error {
@@ -174,6 +176,10 @@ class APICaller {
         })
 
         dataTask.resume()
+    }
+    
+    func getMovie(with query: String) {
+        let url = URL(string: "https://youtube.googleapis.com/youtube/v3/search?q=\(query)&key=\(Constants.YoutubeAPI_Key)")
     }
     
 }
