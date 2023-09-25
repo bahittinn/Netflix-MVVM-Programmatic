@@ -52,6 +52,8 @@ class TitlePreviewViewController: UIViewController {
         view.addSubview(overviewLabel)
         view.addSubview(downloadButton)
         
+        
+        
         configureConstraints()
     }
     
@@ -70,7 +72,8 @@ class TitlePreviewViewController: UIViewController {
         
         let overviewLabelConstraints = [
             overviewLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
-            overviewLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+            overviewLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            overviewLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20)
         ]
         
         let downloadButtonConstraints = [
@@ -90,8 +93,12 @@ class TitlePreviewViewController: UIViewController {
         titleLabel.text = model.title
         overviewLabel.text = model.titleOverview
         
-        guard let url = URL(string: "https://www.youtube.com/embed/\(model.youtubeView.id.videoId)") else { return }
+         
+        guard let url = URL(string: "https://www.youtube.com/embed/\(model.youtubeView.id.videoId!)") else { return }
         
-        webView.load(URLRequest(url: url))
+        print(url)
+        DispatchQueue.main.async {
+            self.webView.load(URLRequest(url: url))
+        }
     }
 }
