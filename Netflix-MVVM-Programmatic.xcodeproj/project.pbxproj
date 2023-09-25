@@ -28,6 +28,7 @@
 		64BE5FAC2A6B241D000036D7 /* CollectionViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE5FAB2A6B241D000036D7 /* CollectionViewTableViewCell.swift */; };
 		64DCD4E82AC0A3DF00BA721F /* YoutubeSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DCD4E72AC0A3DF00BA721F /* YoutubeSearchResponse.swift */; };
 		64DCD4EA2AC20A1000BA721F /* TitlePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DCD4E92AC20A1000BA721F /* TitlePreviewViewController.swift */; };
+		64DCD4EC2AC20C9A00BA721F /* TitlePreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DCD4EB2AC20C9A00BA721F /* TitlePreviewViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		64BE5FAB2A6B241D000036D7 /* CollectionViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewTableViewCell.swift; sourceTree = "<group>"; };
 		64DCD4E72AC0A3DF00BA721F /* YoutubeSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeSearchResponse.swift; sourceTree = "<group>"; };
 		64DCD4E92AC20A1000BA721F /* TitlePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlePreviewViewController.swift; sourceTree = "<group>"; };
+		64DCD4EB2AC20C9A00BA721F /* TitlePreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlePreviewViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				645223052ABCBFDF00EA49DE /* TitleViewModel.swift */,
+				64DCD4EB2AC20C9A00BA721F /* TitlePreviewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				6403EBE82ABAE60500EF8850 /* Extensions.swift in Sources */,
 				64DCD4E82AC0A3DF00BA721F /* YoutubeSearchResponse.swift in Sources */,
 				645669732A6B2125000F5F90 /* UpcomingViewController.swift in Sources */,
+				64DCD4EC2AC20C9A00BA721F /* TitlePreviewViewModel.swift in Sources */,
 				6456695E2A6ADF8F000F5F90 /* SceneDelegate.swift in Sources */,
 				64DCD4EA2AC20A1000BA721F /* TitlePreviewViewController.swift in Sources */,
 				6403EBE62ABA500E00EF8850 /* Title.swift in Sources */,

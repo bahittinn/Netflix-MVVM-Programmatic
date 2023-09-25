@@ -7,6 +7,11 @@
 
 import UIKit
 
+
+protocol COllectionViewTableViewCellDelegate: AnyObject {
+    func CollectionViewTableViewCellDidTapCell(_ cell: CollectionViewTableViewCell, viewModel: TitlePreviewViewModel)
+}
+
 class CollectionViewTableViewCell: UITableViewCell {
     
     static let identifier = "CollectionViewTableViewCell"
